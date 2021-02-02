@@ -2,7 +2,9 @@ version: '2'
 
 services:
   app:
-    build: .
+    build: 
+      context: .
+      dockerfile: ./Dockerfile
     ports:
       - '5555:5555'
     volumes:
@@ -12,4 +14,11 @@ services:
     env_file: .env
     environment:
       - NODE_ENV=development
+    depends_on:
+      - redis
     command: npm run dev
+
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"

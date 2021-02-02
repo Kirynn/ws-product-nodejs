@@ -1,7 +1,10 @@
 const express = require('express')
 const pg = require('pg')
+const RateLimiter = require('./src/middleware/rateLimiter').RateLimiter;
 
 const app = express()
+
+
 // configs come from standard PostgreSQL env vars
 // https://www.postgresql.org/docs/9.6/static/libpq-envars.html
 const pool = new pg.Pool()
@@ -13,7 +16,7 @@ const queryHandler = (req, res, next) => {
 }
 
 app.get('/', (req, res) => {
-  res.send('Welcome to EQ Works 😎')
+  res.send('Welcome to EQ Works hahahah 😎')
 })
 
 app.get('/events/hourly', (req, res, next) => {
